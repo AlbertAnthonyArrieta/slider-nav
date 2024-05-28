@@ -1,0 +1,12 @@
+.city-label {
+    color: #9D9D9D;
+}
+
+.active {
+    color: #050505;
+}
+
+.city-label:hover {
+    color: #1F7CC6;
+    cursor: pointer;
+}
