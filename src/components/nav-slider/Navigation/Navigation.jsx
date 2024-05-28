@@ -6,8 +6,9 @@ import CityList from "../../../navigation.json";
 export const Navigation = () => {
   const [active, setActive] = useState("cupertino");
 
-  const selectCity = () => {
-    console.log("Selecting");
+  const selectCity = (section) => {
+    console.log(section);
+    setActive(section);
   };
 
   return (
@@ -18,6 +19,7 @@ export const Navigation = () => {
             <City
               city={city}
               active={active === city.section ? true : false}
+              onClick={() => selectCity(city.section)}
             />
           </div>
         ))}
