@@ -1,12 +1,16 @@
-.city-label {
-    color: #9D9D9D;
+.city {
+  position: relative;
 }
 
-.active {
-    color: #050505;
+.city-label {
+    color: #9D9D9D;
 }
 
 .city-label:hover {
     color: #1F7CC6;
     cursor: pointer;
+}
+
+.active {
+    color: #050505;
 }
