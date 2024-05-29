@@ -14,3 +14,9 @@
 .active {
     color: #050505;
 }
+
+@media only screen and (max-width: 905px) {
+    .active {
+        border-bottom: solid #050505;
+    }
+  }

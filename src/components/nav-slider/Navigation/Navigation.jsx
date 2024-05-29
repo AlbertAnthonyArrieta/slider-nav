@@ -3,6 +3,12 @@ import { useState, useRef, useEffect } from "react";
 import City from "../City/City.jsx";
 import CityList from "../../../navigation.json";
 
+/**
+ * Bugs:
+ * Resizing - Underline holds position and does not adapt with the navigation bar.
+ * 
+ */
+
 export const Navigation = () => {
   //Current selected city
   const [active, setActive] = useState("cupertino");
@@ -12,11 +18,12 @@ export const Navigation = () => {
   const defaultCityRef = useRef(null);
 
   useEffect(() => {
-  
+    // Get width and position of default city
     const defaultCity = defaultCityRef.current.getBoundingClientRect();
     const dcWidth = defaultCity.width;
     const dcPos = defaultCity.x;
 
+    // Position underline right under the default city
     indicatorRef.current.style.width = `${dcWidth}px`;
     indicatorRef.current.style.transform = `translateX(${dcPos}px)`;
   }, [])
