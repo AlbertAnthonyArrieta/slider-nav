@@ -13,9 +13,24 @@ export const Navigation = () => {
   //Current selected city
   const [active, setActive] = useState("cupertino");
 
-  // Reference Slider component
+  //References for slider and the first city on the list
   const indicatorRef = useRef(null);
   const defaultCityRef = useRef(null);
+
+  // When a new city is clicked on
+  const selectCity = (event, id) => {
+    // Update new selection
+    setActive(id); 
+
+    // Get width and x position of the selected city label
+    const targetCity = event.target.getBoundingClientRect();
+    const width = targetCity.width;
+    const pos = targetCity.x;
+
+    // Move slider right under the label with the corresponding width and position
+    indicatorRef.current.style.width = `${width}px`;
+    indicatorRef.current.style.transform = `translateX(${pos}px)`;
+  };
 
   useEffect(() => {
     // Get width and position of default city
@@ -27,22 +42,6 @@ export const Navigation = () => {
     indicatorRef.current.style.width = `${dcWidth}px`;
     indicatorRef.current.style.transform = `translateX(${dcPos}px)`;
   }, [])
-
-  const selectCity = (event, id) => {
-    // Update new selection
-    setActive(id); 
-
-    // Get width and x position of the selected city label
-    const targetCity = event.target.getBoundingClientRect();
-    const width = targetCity.width;
-    const pos = targetCity.x;
-
-    console.log(targetCity);
-
-    // Move slider right under the label with the corresponding width and position
-    indicatorRef.current.style.width = `${width}px`;
-    indicatorRef.current.style.transform = `translateX(${pos}px)`;
-  };
 
   return (
     <>

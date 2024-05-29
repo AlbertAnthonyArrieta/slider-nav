@@ -28,6 +28,7 @@
   }
 }
 
+/* Mobile View */
 @media only screen and (max-width: 905px) {
   .navigation-items {
     flex-direction: column;
