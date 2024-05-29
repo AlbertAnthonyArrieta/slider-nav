@@ -4,18 +4,33 @@ import City from "../City/City.jsx";
 import CityList from "../../../navigation.json";
 
 export const Navigation = () => {
-  const [active, setActive] = useState("");
+  //Current selected city
+  const [active, setActive] = useState("cupertino");
 
   // Reference Slider component
   const indicatorRef = useRef(null);
+  const defaultCityRef = useRef(null);
+
+  useEffect(() => {
+  
+    const defaultCity = defaultCityRef.current.getBoundingClientRect();
+    const dcWidth = defaultCity.width;
+    const dcPos = defaultCity.x;
+
+    indicatorRef.current.style.width = `${dcWidth}px`;
+    indicatorRef.current.style.transform = `translateX(${dcPos}px)`;
+  }, [])
 
   const selectCity = (event, id) => {
     // Update new selection
     setActive(id); 
 
-    // Get width and x position of city section
-    const width = event.target.getBoundingClientRect().width;
-    const pos = event.target.getBoundingClientRect().x;
+    // Get width and x position of the selected city label
+    const targetCity = event.target.getBoundingClientRect();
+    const width = targetCity.width;
+    const pos = targetCity.x;
+
+    console.log(targetCity);
 
     // Move slider right under the label with the corresponding width and position
     indicatorRef.current.style.width = `${width}px`;
@@ -27,7 +42,7 @@ export const Navigation = () => {
       <div className="navigation">
         <nav className="navigation-items">
           {CityList.cities.map((city, index) => (
-            <div key={index}>
+            <div key={index} ref={index === 0 ? defaultCityRef : null}>
               <City 
                 city={city}
                 active={active === city.section ? true : false}
